@@ -1,42 +1,60 @@
 #include "main.h"
 
-void on_center_button() {
-	static bool pressed = false;
-	pressed = !pressed;
-	if (pressed) {
-		pros::lcd::set_text(2, "I was pressed!");
-	} else {
-		pros::lcd::clear_line(2);
-	}
-}
+#define LEFT_FRONT_MOTOR 16
+#define LEFT_BACK_MOTOR 15
+#define RIGHT_FRONT_MOTOR 18
+#define RIGHT_BACK_MOTOR 14
+#define CATAPULT_MOTOR 11
+#define INTAKE_MOTOR 20
+#define CHAINBAR_MOTOR 13
+#define FLIPPER_MOTOR 12
+#define A 1
+#define B 2
+#define C 3
+#define D 4
+#define E 5
+#define F 6
 
-/**
- * Runs initialization code. This occurs as soon as the program is started.
- *
- * All other competition modes are blocked by initialize; it is recommended
- * to keep execution time for this mode under a few seconds.
- */
+pros::Controller master(pros::E_CONTROLLER_MASTER);
+pros::Motor drive_LF(LEFT_FRONT_MOTOR);
+pros::Motor drive_RF(RIGHT_FRONT_MOTOR);
+pros::Motor drive_LB(LEFT_BACK_MOTOR);
+pros::Motor drive_RB(RIGHT_BACK_MOTOR);
+pros::ADIGyro gyro(C);
+pros::ADIAnalogIn light(E);
+pros::ADIAnalogIn light2(F);
+
+pros::Motor cat(CATAPULT_MOTOR);
+pros::Motor intake(INTAKE_MOTOR);
+pros::ADIAnalogIn cat_pot(D);
+
+pros::Motor flipper(FLIPPER_MOTOR);
+pros::Motor cBar(CHAINBAR_MOTOR);
+pros::ADIDigitalIn cBar_limit(B);
+
+Ball_System ball_system;
+Lift_Systems lift;
+Chassis chassis;
+
+int unloading_step;
+bool unloading;
+
 void initialize() {
 	pros::lcd::initialize();
-	pros::lcd::set_text(1, "Hello PROS User!");
-
-	pros::lcd::register_btn1_cb(on_center_button);
+	cat.set_brake_mode(MOTOR_BRAKE_COAST);
+	intake.set_brake_mode(MOTOR_BRAKE_COAST);
+	drive_RB.set_brake_mode(MOTOR_BRAKE_BRAKE);
+	drive_LB.set_brake_mode(MOTOR_BRAKE_BRAKE);
+	flipper.set_brake_mode(MOTOR_BRAKE_BRAKE);
+	cBar.set_brake_mode(MOTOR_BRAKE_BRAKE);
+	selected_auto = 0;
+	reset_auto_variables();
+	cBar.tare_position();
+	flipper.tare_position();
+	unloading = false;
+	unloading_step = 0;
 }
 
-/**
- * Runs while the robot is in the disabled state of Field Management System or
- * the VEX Competition Switch, following either autonomous or opcontrol. When
- * the robot is enabled, this task will exit.
- */
 void disabled() {}
 
-/**
- * Runs after initialize(), and before autonomous when connected to the Field
- * Management System or the VEX Competition Switch. This is intended for
- * competition-specific initialization routines, such as an autonomous selector
- * on the LCD.
- *
- * This task will exit when the robot is enabled and autonomous or opcontrol
- * starts.
- */
 void competition_initialize() {}
