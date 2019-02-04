@@ -59,7 +59,7 @@ void PID::set_pid_vars(int targ, int int_limit) {
 
 //displays the error to terminal
 void PID::display_output() {
-  printf("%5d", error);
+  printf("%5d\n", error);
 }
 
 
