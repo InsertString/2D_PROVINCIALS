@@ -55,3 +55,20 @@ void flag_auto(int colour) {
   switch (auto_step) {
   }
 }
+
+
+
+
+
+void park_auto(int colour) {
+  switch (auto_step) {
+  }
+}
+
+
+
+
+void skills_auto() {
+  switch (auto_step) {
+  }
+}

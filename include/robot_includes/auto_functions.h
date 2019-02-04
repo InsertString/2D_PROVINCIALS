@@ -15,6 +15,6 @@ void advance_auto_step(int time_out);
 void flag_auto(int colour);
 void park_auto(int colour);
 void partner_auto(int colour);
-void skills_auto(int colour);
+void skills_auto();
 
 #endif

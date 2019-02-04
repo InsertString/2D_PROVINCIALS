@@ -4,7 +4,7 @@ void autonomous() {
   start_auto();
   resetTimer(AUTO_TIMER);
   chassis.reset_chassis_auto_vars();
-  while (getTime(AUTO_TIMER) < 15000) {
+  while (true) {
     //chassis.PID_turn(900, 100);
     ///*
     switch (selected_auto) {
@@ -15,19 +15,19 @@ void autonomous() {
       flag_auto(BLUE);
       break;
       case 2 :
-
+      park_auto(RED);
       break;
       case 3 :
-
+      park_auto(BLUE);
       break;
       case 4 :
-
+      partner_auto(RED);
       break;
       case 5 :
-
+      partner_auto(BLUE);
       break;
       case 6 :
-
+      skills_auto();
       break;
     }
     //*/
