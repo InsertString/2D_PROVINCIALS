@@ -7,7 +7,6 @@ Auto_Function t;
 
 
 Ball_System::Ball_System() {
-  target = IDLE;
   Cat_target = CAT_TARGET;
   shoot_step = 0;
 }
@@ -108,7 +107,7 @@ void Ball_System::drive() {
     else if (master.get_digital(DIGITAL_L2)) {
       intake_state = 2;
     }
-    else if ((intake_state != 1 && !master.get_digital(DIGITAL_L2)) || (master.get_digital(DIGITAL_R2))) {
+    else if ((intake_state != 1 && !master.get_digital(DIGITAL_L2))) {
       intake_state = 0;
     }
 
@@ -151,7 +150,7 @@ void Ball_System::drive() {
       case 1 :
       chassis.setLeftPower(127);
       chassis.setRightPower(127);
-      if (chassis.right_pos() > 400) {
+      if (chassis.right_pos() > 500) {
         unloading_step++;
         chassis.reset_drive_sensors(false);
       }
@@ -162,7 +161,7 @@ void Ball_System::drive() {
       }
       chassis.setLeftPower(-127);
       chassis.setRightPower(-127);
-      if (chassis.right_pos() < -400) {
+      if (chassis.right_pos() < -500) {
         unloading_step++;
         chassis.setLeftPower(0);
         chassis.setRightPower(0);

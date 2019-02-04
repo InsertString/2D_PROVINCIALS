@@ -18,12 +18,6 @@ enum Auto_Function {
   FLAGGED
 };
 
-enum Cat_Positions {
-  LOAD,
-  IDLE,
-  FIRE
-};
-
 
 class Chassis {
 public:
@@ -82,7 +76,6 @@ public:
 
   void drive();
 private:
-  Cat_Positions target;
   int Cat_target;
 };
 
