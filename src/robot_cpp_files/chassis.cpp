@@ -187,24 +187,9 @@ void Chassis::drive() {
   int right;
 
 	if (unloading == false) {
-	  if (master.get_digital_new_press(DIGITAL_Y)) {
-	    if (direction == INTAKE_FORWARD) {
-	      direction = CATAPULT_FORWARD;
-	    }
-	    else if (direction == CATAPULT_FORWARD) {
-	      direction = INTAKE_FORWARD;
-	    }
-	  }
 
-
-	  if (direction == INTAKE_FORWARD) {
-	    left = -master.get_analog(ANALOG_LEFT_Y) > 0 ? TrueSpeedArray[abs(master.get_analog(ANALOG_LEFT_Y))] : -TrueSpeedArray[abs(master.get_analog(ANALOG_LEFT_Y))];
-	    right = -master.get_analog(ANALOG_RIGHT_Y) > 0 ? TrueSpeedArray[abs(master.get_analog(ANALOG_RIGHT_Y))] : -TrueSpeedArray[abs(master.get_analog(ANALOG_RIGHT_Y))];
-	  }
-	  else if (direction == CATAPULT_FORWARD) {
-	    left = master.get_analog(ANALOG_RIGHT_Y) > 0 ? TrueSpeedArray[abs(master.get_analog(ANALOG_RIGHT_Y))] : -TrueSpeedArray[abs(master.get_analog(ANALOG_RIGHT_Y))];
-	    right = master.get_analog(ANALOG_LEFT_Y) > 0 ? TrueSpeedArray[abs(master.get_analog(ANALOG_LEFT_Y))] : -TrueSpeedArray[abs(master.get_analog(ANALOG_LEFT_Y))];
-	  }
+	  left = -master.get_analog(ANALOG_LEFT_Y) > 0 ? TrueSpeedArray[abs(master.get_analog(ANALOG_LEFT_Y))] : -TrueSpeedArray[abs(master.get_analog(ANALOG_LEFT_Y))];
+	  right = -master.get_analog(ANALOG_RIGHT_Y) > 0 ? TrueSpeedArray[abs(master.get_analog(ANALOG_RIGHT_Y))] : -TrueSpeedArray[abs(master.get_analog(ANALOG_RIGHT_Y))];
 
 	  setLeftPower(left);
 	  setRightPower(right);
