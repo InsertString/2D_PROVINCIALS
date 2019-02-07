@@ -188,11 +188,11 @@ void Chassis::drive() {
 
 	if (unloading == false) {
 
-	  left = -master.get_analog(ANALOG_LEFT_Y) > 0 ? TrueSpeedArray[abs(master.get_analog(ANALOG_LEFT_Y))] : -TrueSpeedArray[abs(master.get_analog(ANALOG_LEFT_Y))];
+	  left = -master.get_analog(ANALOG_LEFT_X) > 0 ? TrueSpeedArray[abs(master.get_analog(ANALOG_LEFT_Y))] : -TrueSpeedArray[abs(master.get_analog(ANALOG_LEFT_Y))];
 	  right = -master.get_analog(ANALOG_RIGHT_Y) > 0 ? TrueSpeedArray[abs(master.get_analog(ANALOG_RIGHT_Y))] : -TrueSpeedArray[abs(master.get_analog(ANALOG_RIGHT_Y))];
 
-	  setLeftPower(left);
-	  setRightPower(right);
+	  setLeftPower(right + left);
+	  setRightPower(right - left);
 
 	}
 	else if (unloading == true) {

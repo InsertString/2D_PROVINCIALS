@@ -84,7 +84,7 @@ void Lift_Systems::drive() {
     cBar.move_absolute(550, 100);
   }
   else if (cBar_state == RIGHT) {
-    cBar.move_absolute(950, 100);
+    cBar.move_absolute(950, 50);
   }
   else if (cBar_state == DOWN) {
     if (cBar_limit.get_value() == false) {
