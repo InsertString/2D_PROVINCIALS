@@ -6,7 +6,7 @@
 
 
 #define CAT_TARGET 1590
-#define CAT_THRESHOLD 1525
+#define CAT_THRESHOLD 1550
 
 #define CAT_INTAKE_IN 1
 #define CAT_INTAKE_OUT 2

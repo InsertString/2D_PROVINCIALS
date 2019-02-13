@@ -57,10 +57,10 @@ void Lift_Systems::drive() {
   }
 
   if (flipper_state == UP) {
-    flipper.move_absolute(GRABBING, 200);
+    flipper.move_absolute(GRABBING, 100);
   }
   else if (flipper_state == DOWN) {
-    flipper.move_absolute(0, 200);
+    flipper.move_absolute(0, 100);
   }
 
   if (master.get_digital_new_press(DIGITAL_X)) {
