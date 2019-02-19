@@ -22,8 +22,8 @@ const unsigned int TrueSpeedArray[128] = {
 
 Chassis::Chassis() {
   direction = INTAKE_FORWARD;
-  //drive_pid.set_Constants(0.19, 1, 2);
-  //turn_pid.set_Constants(0.15, 1, 15);
+  drive_pid.set_Constants(0.19, 1, 2);
+  turn_pid.set_Constants(0.15, 1, 15);
   drive_step = 0;
   turn_step = 0;
 }
@@ -85,8 +85,8 @@ Auto_Function Chassis::PID_drive(int target, int max_power) {
     case 0 :
     //set default values//
     reset_drive_sensors(true);
-		drive_pid.set_Constants(0.18, 0, 4);
-    drive_pid.set_pid_vars(target, 15);
+		//drive_pid.set_Constants(0.18, 1, 4);
+    drive_pid.set_pid_vars(target, 15, 9);
     gyro_error = 0;
     return_state = INCOMPLETE;
     //reset timers//
@@ -110,7 +110,7 @@ Auto_Function Chassis::PID_drive(int target, int max_power) {
 
 		//drive_pid.display_output();
 
-    if (abs(drive_pid.error) < 10 || getTime(DRIVE_PID_TIMEOUT) > 20000) {
+    if (abs(drive_pid.error) < 50 || getTime(DRIVE_PID_TIMEOUT) > 2000) {
       if (getTime(DRIVE_PID_EXIT) > 50) drive_step++;
     }
     else
@@ -138,7 +138,7 @@ Auto_Function Chassis::PID_turn(int target, int max_power) {
     case 0 :
     //set default values//
     reset_drive_sensors(true);
-		turn_pid.set_Constants(0.14, 0, 0);
+		//turn_pid.set_Constants(0.14, 0, 0);
     turn_pid.set_pid_vars(target, 11, 5);
     return_state = INCOMPLETE;
     //reset timers/
@@ -159,7 +159,7 @@ Auto_Function Chassis::PID_turn(int target, int max_power) {
 
 		turn_pid.display_output();
 
-    if (abs(turn_pid.error) < 2 || getTime(TURN_PID_TIMEOUT) > 20000000) {
+    if (abs(turn_pid.error) < 10 || getTime(TURN_PID_TIMEOUT) > 2000) {
       if (getTime(DRIVE_PID_EXIT) > 50) turn_step++;
     }
     else

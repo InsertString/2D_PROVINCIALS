@@ -76,6 +76,9 @@ void Lift_Systems::drive() {
   else if (master.get_digital(DIGITAL_B)) {
     cBar_state = DOWN;
   }
+  else if (master.get_digital(DIGITAL_RIGHT)) {
+    cBar_state = 1000;
+  }
 
   if (cBar_state == UP) {
     cBar.move_absolute(1850, 200);
@@ -85,6 +88,9 @@ void Lift_Systems::drive() {
   }
   else if (cBar_state == RIGHT) {
     cBar.move_absolute(950, 50);
+  }
+  else if (cBar_state == 1000) {
+    cBar.move_absolute(2630, 200);
   }
   else if (cBar_state == DOWN) {
     if (cBar_limit.get_value() == false) {
