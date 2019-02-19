@@ -49,11 +49,14 @@ extern Lift_Systems lift;
 extern Chassis chassis;
 
 extern pros::ADIGyro gyro;
+extern pros::ADIGyro gyro_2;
 extern pros::ADIAnalogIn light;
 extern pros::ADIAnalogIn light2;
 
 extern int selected_auto;
 extern bool unloading;
 extern int unloading_step;
+
+extern PID drive_pid;
 
 #endif  // _PROS_MAIN_H_

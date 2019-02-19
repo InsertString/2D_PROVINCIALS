@@ -5,8 +5,8 @@
 #define _ROBOT_CLASSES_H_
 
 
-#define CAT_TARGET 1590
-#define CAT_THRESHOLD 1550
+#define CAT_TARGET 1600
+#define CAT_THRESHOLD 1570
 
 #define CAT_INTAKE_IN 1
 #define CAT_INTAKE_OUT 2
@@ -17,6 +17,10 @@ enum Auto_Function {
   INCOMPLETE,
   FLAGGED
 };
+
+
+double gyro_filtered();
+void reset_gyro();
 
 
 class Chassis {
@@ -36,7 +40,6 @@ public:
   int drive_step;
   int turn_step;
   void reset_chassis_auto_vars();
-private:
   int direction;
   PID drive_pid;
   PID turn_pid;

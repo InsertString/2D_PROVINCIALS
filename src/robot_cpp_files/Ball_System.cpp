@@ -62,7 +62,7 @@ Auto_Function Ball_System::shoot() {
 
 
 
-int a = 1;
+int aa = 1;
 int b = 0;
 void Ball_System::drive() {
 
@@ -72,25 +72,26 @@ void Ball_System::drive() {
   int power = (Cat_target - cat_pot.get_value()) * 1;
 
   if (master.get_digital_new_press(DIGITAL_R1)) {
-    a = 0;
+    aa = 0;
+    setCatpower(127);
   }
 
-  if (a == 1) {
+  if (aa == 1) {
     if (cat_pot.get_value() < CAT_THRESHOLD && b == 1) {
-      setCatpower(power);
+      setCatpower(127);
     }
     else {
       setCatpower(0);
       b = 0;
-      a = 1;
+      aa = 1;
     }
   }
-  else if (a == 0) {
+  else if (aa == 0) {
     if (cat_pot.get_value() > 700) {
       setCatpower(127);
     }
     else {
-      a = 1;
+      aa = 1;
       b = 1;
     }
   }

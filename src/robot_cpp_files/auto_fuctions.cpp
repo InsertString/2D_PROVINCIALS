@@ -164,7 +164,7 @@ void flag_auto(int colour) {
     }
     break;
     case 15 :
-    i = chassis.PID_drive(-700, 50);
+    i = chassis.PID_drive(-700, 100);
     if (i == COMPLETE) {
       advance_auto_step();
     }

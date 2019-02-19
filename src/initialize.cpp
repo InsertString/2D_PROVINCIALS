@@ -21,6 +21,7 @@ pros::Motor drive_RF(RIGHT_FRONT_MOTOR);
 pros::Motor drive_LB(LEFT_BACK_MOTOR);
 pros::Motor drive_RB(RIGHT_BACK_MOTOR);
 pros::ADIGyro gyro(C);
+pros::ADIGyro gyro_2(8);
 pros::ADIAnalogIn light(E);
 pros::ADIAnalogIn light2(F);
 
