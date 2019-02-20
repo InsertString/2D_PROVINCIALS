@@ -28,6 +28,7 @@ pros::ADIAnalogIn light2(F);
 pros::Motor cat(CATAPULT_MOTOR);
 pros::Motor intake(INTAKE_MOTOR);
 pros::ADIAnalogIn cat_pot(D);
+pros::ADIAnalogIn auto_pot(8);
 
 pros::Motor flipper(FLIPPER_MOTOR);
 pros::Motor cBar(CHAINBAR_MOTOR);

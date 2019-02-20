@@ -38,6 +38,7 @@ extern pros::Motor drive_RB;
 extern pros::Motor intake;
 extern pros::Motor cat;
 extern pros::ADIAnalogIn cat_pot;
+extern pros::ADIAnalogIn auto_pot;
 
 extern pros::Motor flipper;
 extern pros::Motor cBar;

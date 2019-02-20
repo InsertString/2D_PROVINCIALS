@@ -83,13 +83,26 @@ void flag_auto(int colour) {
       }
     break;
     case 3 :
-      i = chassis.PID_drive(-1190, 100);
+      if (colour == RED) {
+        i = chassis.PID_drive(-1190, 100);
+      }
+      else if (colour == BLUE) {
+        i = chassis.PID_drive(-1210, 100);
+      }
+
       if (i == COMPLETE) {
         advance_auto_step();
       }
     break;
     case 4 :
-      i = chassis.PID_turn(640, 100);
+      if (colour == RED) {
+        i = chassis.PID_turn(640, 100);
+      }
+      else if (colour == BLUE) {
+        i = chassis.PID_turn(-640, 100);
+      }
+
+      //i = chassis.PID_turn(640, 100);
       if (i == COMPLETE) {
         advance_auto_step();
       }
@@ -114,7 +127,14 @@ void flag_auto(int colour) {
       }
     break;
     case 8 :
-      i = chassis.PID_turn(-550, 100);
+      if (colour == RED) {
+        i = chassis.PID_turn(-550, 100);
+      }
+      else if (colour == BLUE) {
+        i = chassis.PID_turn(550, 100);
+      }
+
+      //i = chassis.PID_turn(-550, 100);
       if (i == COMPLETE) {
         advance_auto_step();
       }
@@ -146,7 +166,14 @@ void flag_auto(int colour) {
       }
     break;
     case 12 :
-      i = chassis.PID_turn(-510, 100);
+      if (colour == RED) {
+        i = chassis.PID_turn(-510, 100);
+      }
+      else if (colour == BLUE) {
+        i = chassis.PID_turn(510, 100);
+      }
+
+      //i = chassis.PID_turn(-510, 100);
       if (i == COMPLETE) {
         advance_auto_step();
       }
@@ -158,7 +185,14 @@ void flag_auto(int colour) {
       }
     break;
     case 14 :
-      i = chassis.PID_turn(1250, 100);
+      if (colour == RED) {
+        i = chassis.PID_turn(1250, 100);
+      }
+      else if (colour == BLUE) {
+        i = chassis.PID_turn(-1250, 100);
+      }
+
+      //i = chassis.PID_turn(1250, 100);
       if (i == COMPLETE || getTime(AUTO_STEP_TIMEOUT) > 800) {
         advance_auto_step();
       }
@@ -170,7 +204,14 @@ void flag_auto(int colour) {
       //}
     break;
     case 16 :
-      i = chassis.PID_turn(-130, 100);
+      if (colour == RED) {
+        i = chassis.PID_turn(-130, 100);
+      }
+      else if (colour == BLUE) {
+        i = chassis.PID_turn(130, 100);
+      }
+
+      //i = chassis.PID_turn(-130, 100);
       if (i == COMPLETE || getTime(AUTO_STEP_TIMEOUT) > 500) {
         ball_system.setIntakePower(0);
         advance_auto_step();
@@ -212,6 +253,8 @@ void flag_auto(int colour) {
 
 void park_auto(int colour) {
   switch (auto_step) {
+    case 0 :
+    break;
   }
 }
 

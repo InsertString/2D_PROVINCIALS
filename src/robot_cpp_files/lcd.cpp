@@ -6,9 +6,9 @@ std::string auto_names[7] {
   "FLAG BLUE",
   "PARK RED",
   "PARK BLUE",
-  "PARTNER RED"
-  "PARTNER BLUE"
-  "SKILLS"
+  "PARTNER RED",
+  "PARTNER BLUE",
+  "SKILLS",
 };
 
 int selected_auto;
@@ -60,6 +60,11 @@ int LCD_center_pressed()
 
 
 void lcd_control() {
+
+  selected_auto = floorf(auto_pot.get_value() / 585);
+
+
+
   curr_lcd_btn_val = LCD_btn();
 
   if (page == AUTO_SELECT) {
@@ -100,10 +105,10 @@ void lcd_control() {
       page = 0;
   }
   else if (LCD_center_pressed()) {
-    if (selected_auto < 6)
-      selected_auto++;
-    else
-      selected_auto = 0;
+    //if (selected_auto < 6)
+    //  selected_auto++;
+    //else
+    //  selected_auto = 0;
   }
   else if (LCD_right_pressed()) {
     if (page > 0)
