@@ -71,6 +71,33 @@ void Ball_System::drive() {
   //CATAPULT
   int power = (Cat_target - cat_pot.get_value()) * 1;
 
+
+  if (master.get_digital_new_press(DIGITAL_R1)) {
+    aa = 0;
+    b = 1;
+    setCatpower(127);
+  }
+
+
+  if (aa == 1) {
+    if (cat_pot.get_value() < CAT_THRESHOLD && b == 1) {
+      setCatpower(127);
+    }
+    else {
+      setCatpower(0);
+      b = 0;
+    }
+  }
+  else if (aa == 0) {
+    setCatpower(127);
+    if (cat_pot.get_value() < (CAT_THRESHOLD - 500)) {
+      aa = 1;
+      b = 1;
+    }
+  }
+
+
+  /*
   if (master.get_digital_new_press(DIGITAL_R1)) {
     aa = 0;
     setCatpower(127);
@@ -95,6 +122,7 @@ void Ball_System::drive() {
       b = 1;
     }
   }
+  */
 
 
   //INTAKE
