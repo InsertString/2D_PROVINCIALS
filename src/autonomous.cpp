@@ -37,12 +37,6 @@ void autonomous() {
       park_auto(BLUE);
       break;
       case 4 :
-      partner_auto(RED);
-      break;
-      case 5 :
-      partner_auto(BLUE);
-      break;
-      case 6 :
       skills_auto();
       break;
     }

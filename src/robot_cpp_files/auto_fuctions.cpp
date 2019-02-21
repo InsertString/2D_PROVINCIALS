@@ -225,14 +225,14 @@ void flag_auto(int colour) {
     break;
     case 16 :
       if (colour == RED) {
-        i = chassis.PID_turn(-130, 100);
+        i = chassis.PID_turn(-100, 100);
       }
       else if (colour == BLUE) {
-        i = chassis.PID_turn(130, 100);
+        i = chassis.PID_turn(100, 100);
       }
 
       //i = chassis.PID_turn(-130, 100);
-      if (i == COMPLETE || getTime(AUTO_STEP_TIMEOUT) > 500) {
+      if (i == COMPLETE || getTime(AUTO_STEP_TIMEOUT) > 400) {
         ball_system.setIntakePower(0);
         advance_auto_step();
       }
