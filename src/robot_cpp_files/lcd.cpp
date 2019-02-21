@@ -1,13 +1,11 @@
 #include "main.h"
 #include "robot_includes/robot_includes.h"
 
-std::string auto_names[7] {
+std::string auto_names[5] {
   "FLAG RED",
   "FLAG BLUE",
   "PARK RED",
   "PARK BLUE",
-  "PARTNER RED",
-  "PARTNER BLUE",
   "SKILLS",
 };
 
@@ -61,7 +59,7 @@ int LCD_center_pressed()
 
 void lcd_control() {
 
-  selected_auto = floorf(auto_pot.get_value() / 585);
+  selected_auto = floorf(auto_pot.get_value() / 819);
 
 
 

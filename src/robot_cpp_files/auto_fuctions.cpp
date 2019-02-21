@@ -61,33 +61,6 @@ void advance_auto_step() {
 
 
 
-void partner_auto(int colour) {
-  switch (auto_step) {
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -375,7 +348,7 @@ void park_auto(int colour) {
       }
     break;
     case 3 :
-    
+
     break;
   }
 }
