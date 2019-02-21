@@ -42,10 +42,50 @@ void advance_auto_step() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void partner_auto(int colour) {
   switch (auto_step) {
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -57,8 +97,15 @@ void flag_auto(int colour) {
       i = chassis.PID_drive(1150, 100);
       ball_system.setIntakePower(127);
 
-      if (chassis.right_pos() > 400)
-        cBar = -127;
+      if (chassis.right_pos() > 400) {
+        if (cBar_limit.get_value() == false) {
+          cBar = -127;
+        }
+        else if (cBar_limit.get_value() == true) {
+          cBar = 0;
+          cBar.tare_position();
+        }
+      }
 
       if (i == COMPLETE && cBar_limit.get_value() == true) {
         cBar = 0;
@@ -251,12 +298,108 @@ void flag_auto(int colour) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void park_auto(int colour) {
   switch (auto_step) {
     case 0 :
+      i = ball_system.shoot();
+
+      if (cBar_limit.get_value() == false) {
+        cBar = -127;
+      }
+      else if (cBar_limit.get_value() == true) {
+        cBar = 0;
+        cBar.tare_position();
+      }
+
+      if (i == COMPLETE && cBar_limit.get_value() == true) {
+        cBar = 0;
+        cBar.tare_position();
+        advance_auto_step();
+      }
+    break;
+    case 1 :
+      if (colour == RED) {
+        i = chassis.PID_turn(-600, 100);
+      }
+      else if (colour == BLUE) {
+        i = chassis.PID_turn(600, 100);
+      }
+
+      if (i == COMPLETE) {
+        advance_auto_step();
+      }
+    break;
+    case 2 :
+      i = chassis.PID_drive(-2500, 100);
+
+      if (i == COMPLETE) {
+        cBar.move_absolute(550, 100);
+
+        if (cBar.get_position() > 530) {
+          advance_auto_step();
+        }
+      }
+    break;
+    case 3 :
+    
     break;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

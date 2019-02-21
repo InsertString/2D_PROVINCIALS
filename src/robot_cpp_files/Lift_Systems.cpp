@@ -81,7 +81,7 @@ void Lift_Systems::drive() {
   }
 
   if (cBar_state == UP) {
-    cBar.move_absolute(1850, 200);
+    cBar.move_absolute(1850, 150);
   }
   else if (cBar_state == LEFT) {
     cBar.move_absolute(550, 100);
