@@ -6,7 +6,7 @@ void autonomous() {
   start_auto();
   resetTimer(AUTO_TIMER);
   chassis.reset_chassis_auto_vars();
-  selected_auto = floorf(auto_pot.get_value() / 585);
+  selected_auto = floorf(auto_pot.get_value() / 819);
   while (getTime(AUTO_TIMER) < 15000) {
     pros::delay(20);
     if (getTime(AUTO_TIMER) % 20 == 0 && bbb == INCOMPLETE) {
