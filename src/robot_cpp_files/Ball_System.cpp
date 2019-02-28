@@ -80,19 +80,20 @@ void Ball_System::drive() {
 
 
   if (aa == 1) {
-    if (cat_pot.get_value() < CAT_THRESHOLD && b == 1) {
-      setCatpower(127);
+    if (b == 1) {
+      setCatpower(power*1.1);
+      if (cat_pot.get_value() > 1520) {
+        b = 0;
+      }
     }
     else {
       setCatpower(0);
-      b = 0;
     }
   }
   else if (aa == 0) {
-    setCatpower(127);
-    if (cat_pot.get_value() < (CAT_THRESHOLD - 500)) {
+    //setCatpower(127);
+    if (cat_pot.get_value() < (500)) {
       aa = 1;
-      b = 1;
     }
   }
 
