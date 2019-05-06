@@ -103,10 +103,10 @@ void flag_auto(int colour) {
     break;
     case 3 :
       if (colour == RED) {
-        i = chassis.PID_drive(-1200, 100);
+        i = chassis.PID_drive(-1150, 100);
       }
       else if (colour == BLUE) {
-        i = chassis.PID_drive(-1210, 100);
+        i = chassis.PID_drive(-1300, 100);
       }
 
       if (i == COMPLETE) {
@@ -115,10 +115,10 @@ void flag_auto(int colour) {
     break;
     case 4 :
       if (colour == RED) {
-        i = chassis.PID_turn(600, 100);
+        i = chassis.PID_turn(630, 100);
       }
       else if (colour == BLUE) {
-        i = chassis.PID_turn(-640, 100);
+        i = chassis.PID_turn(-600, 100);
       }
 
       //i = chassis.PID_turn(640, 100);
@@ -127,7 +127,7 @@ void flag_auto(int colour) {
       }
     break;
     case 5 :
-      i = chassis.PID_drive(-100, 100);
+      i = chassis.PID_drive(-400, 100);
       if (i == COMPLETE && getTime(AUTO_STEP_TIMEOUT) > 700) {
         advance_auto_step();
       }
@@ -139,7 +139,7 @@ void flag_auto(int colour) {
       }
     break;
     case 7 :
-      i = chassis.PID_drive(-2250, 100);
+      i = chassis.PID_drive(-1900, 100);
       flipper.move_absolute(0, 100);
       if (i == COMPLETE && flipper.get_position() > -10) {
         advance_auto_step();
@@ -150,7 +150,7 @@ void flag_auto(int colour) {
         i = chassis.PID_turn(-550, 100);
       }
       else if (colour == BLUE) {
-        i = chassis.PID_turn(550, 100);
+        i = chassis.PID_turn(570, 100);
       }
 
       //i = chassis.PID_turn(-550, 100);
@@ -159,9 +159,12 @@ void flag_auto(int colour) {
       }
     break;
     case  9 :
+    if (colour == BLUE)
       i = chassis.PID_drive(570, 100);
+    else if (colour == RED)
+      i = chassis.PID_drive(360, 100);
 
-      if (chassis.right_pos() > 500)
+      if ((chassis.right_pos() > 500 && colour == BLUE) || (chassis.right_pos() > 400 && colour == RED))
         flipper.move_absolute(-380, 100);
 
       if (i == COMPLETE && flipper.get_position() < -300) {
@@ -169,8 +172,9 @@ void flag_auto(int colour) {
       }
     break;
     case 10 :
-      i = chassis.PID_drive(-600, 100);
-      if (i == COMPLETE) {
+      if (colour == BLUE)i = chassis.PID_drive(-600, 100);
+      else if (colour == RED)i = chassis.PID_drive(-600, 100);
+      if (i == COMPLETE|| getTime(AUTO_STEP_TIMEOUT) > 1000) {
         advance_auto_step();
       }
     break;
@@ -189,16 +193,16 @@ void flag_auto(int colour) {
         i = chassis.PID_turn(-510, 100);
       }
       else if (colour == BLUE) {
-        i = chassis.PID_turn(510, 100);
+        i = chassis.PID_turn(520, 100);
       }
 
       //i = chassis.PID_turn(-510, 100);
       if (i == COMPLETE) {
-        advance_auto_step();
+        //advance_auto_step();
       }
     break;
     case 13 :
-      i = chassis.PID_drive(2550, 100);
+      i = chassis.PID_drive(2600, 100);
       if (i == COMPLETE) {
         advance_auto_step();
       }
@@ -224,28 +228,31 @@ void flag_auto(int colour) {
     break;
     case 16 :
       if (colour == RED) {
-        i = chassis.PID_turn(-130, 100);
+        i = chassis.PID_turn(-110, 100);
       }
       else if (colour == BLUE) {
-        i = chassis.PID_turn(130, 100);
+        i = chassis.PID_turn(140, 100);
       }
 
       //i = chassis.PID_turn(-130, 100);
-      if (i == COMPLETE || getTime(AUTO_STEP_TIMEOUT) > 400) {
+      if (i == COMPLETE || getTime(AUTO_STEP_TIMEOUT) > 700) {
         ball_system.setIntakePower(0);
         advance_auto_step();
       }
     break;
     case 17 :
-      i = chassis.PID_drive(1600, 100);
+      i = chassis.PID_drive(1850, 100);
       if (i == COMPLETE) {
         advance_auto_step();
       }
     break;
     case 18 :
-      i = chassis.PID_drive(700, 50);
+      i = chassis.PID_drive(350, 50);
 
-      if (chassis.right_pos() > 300) ball_system.setIntakePower(127);
+      if (chassis.right_pos() > 300) {
+        ball_system.setIntakePower(127);
+
+      }
 
       if (i == COMPLETE) {
         //ball_system.setIntakePower(127);
@@ -254,7 +261,7 @@ void flag_auto(int colour) {
     break;
     case 19 :
       if (getTime(AUTO_TIMER) > 14000)
-        chassis.PID_drive(-300, 100);
+        chassis.PID_drive(-450, 100);
 
       if (getTime(AUTO_TIMER) > 14700) {
         i = ball_system.shoot();
@@ -336,19 +343,19 @@ void park_auto(int colour) {
     break;
     case 3 :
     if (colour == RED) {
-      i = chassis.PID_turn(-250, 70);
+      i = chassis.PID_turn(-300, 70);
     }
     else if (colour == BLUE) {
       i = chassis.PID_turn(300, 70);
     }
 
-    if (i == COMPLETE) {
+    if (i == COMPLETE || getTime(AUTO_STEP_TIMEOUT) > 1000) {
       ball_system.setIntakePower(0);
       advance_auto_step();
     }
     break;
     case 4 :
-    i = chassis.PID_drive(1500, 50);
+    i = chassis.PID_drive(1200, 50);
     if (i == COMPLETE) {
       advance_auto_step();
     }
@@ -382,7 +389,7 @@ void park_auto(int colour) {
     else if (colour == BLUE) {
       i = chassis.PID_turn(450, 100);
     }
-    if ( i == COMPLETE) {
+    if ( i == COMPLETE || getTime(AUTO_STEP_TIMEOUT) > 700) {
       advance_auto_step();
     }
     break;
@@ -399,7 +406,7 @@ void park_auto(int colour) {
     else if (colour == BLUE) {
       i = chassis.PID_turn(-450, 100);
     }
-    if (i == COMPLETE) {
+    if (i == COMPLETE || getTime(AUTO_STEP_TIMEOUT) > 700) {
       advance_auto_step();
     }
     break;
@@ -416,19 +423,20 @@ void park_auto(int colour) {
     }
     break;
     case 12 :
-    cBar.move_absolute(550, 200);
+    cBar.move_absolute(500, 50);
+    ball_system.setIntakePower(127);
     if (colour == RED) {
-      i = chassis.PID_turn(-900, 100);
+      i = chassis.PID_turn(1000, 100);
     }
     else if (colour == BLUE) {
-      i = chassis.PID_turn(900, 100);
+      i = chassis.PID_turn(-1000, 100);
     }
-    if (i == COMPLETE && cBar.get_position() > 540) {
+    if (i == COMPLETE) {
       advance_auto_step();
     }
     break;
     case 13 :
-    i = chassis.PID_drive(-2000, 100);
+    i = chassis.PID_drive(3500, 100);
     break;
   }
 }

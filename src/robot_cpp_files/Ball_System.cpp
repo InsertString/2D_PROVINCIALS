@@ -31,6 +31,7 @@ int intake_state;
 
 Auto_Function Ball_System::shoot() {
   Auto_Function return_state = INCOMPLETE;
+  int power = (Cat_target - cat_pot.get_value()) * 1;
 
   switch (shoot_step) {
     case 0 :
@@ -43,6 +44,7 @@ Auto_Function Ball_System::shoot() {
     }
     break;
     case 1 :
+
     if (cat_pot.get_value() < CAT_THRESHOLD) {
       setCatpower(127);
     }
